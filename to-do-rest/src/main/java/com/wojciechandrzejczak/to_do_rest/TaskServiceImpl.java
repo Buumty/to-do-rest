@@ -1,8 +1,10 @@
 package com.wojciechandrzejczak.to_do_rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -32,9 +34,9 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public String checkStatusById(Integer id) {
-        Task task = taskRepository.findById(id).orElseThrow(InputMismatchException::new);
-        return task.getStatus();
+    public void update(Integer id, Task updatedtask) {
+        taskRepository.findAll().removeIf(t -> t.getId().equals(updatedtask.getId()));
+        taskRepository.save(updatedtask);
     }
 
     @Override

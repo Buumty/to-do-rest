@@ -11,6 +11,6 @@ public interface TaskService {
     List<Task> findAll();
     Task findById(Integer id);
     Task save(Task task);
-    String checkStatusById(Integer id);
+    void update(Integer id, Task task);
     void deleteById(Integer id);
 }

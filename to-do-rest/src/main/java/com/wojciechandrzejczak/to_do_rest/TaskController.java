@@ -41,6 +41,13 @@ public class TaskController {
         return ResponseEntity.created(locationUri).body(locationUri);
     }
 
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity<Task> update(@PathVariable Integer id, @RequestBody Task task) {
+        taskService.update(id, task);
+
+        return ResponseEntity.ok(task);
+    }
+
     @DeleteMapping("tasks/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         taskService.deleteById(id);

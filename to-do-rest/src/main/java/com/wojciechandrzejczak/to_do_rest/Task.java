@@ -18,6 +18,13 @@ public class Task {
         this.name = name;
         this.status = status;
     }
+
+    public Task(Integer id, String name, String status) {
+        Id = id;
+        this.name = name;
+        this.status = status;
+    }
+
     public Task(){}
 
     public Integer getId() {
