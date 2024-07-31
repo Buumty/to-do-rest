@@ -1,11 +1,9 @@
 package com.wojciechandrzejczak.to_do_rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
 @Service
@@ -16,8 +14,6 @@ public class TaskServiceImpl implements TaskService{
         this.taskRepository = taskRepository;
     }
 
-    @Autowired
-
     @Override
     public List<Task> findAll() {
         return taskRepository.findAll();
@@ -25,22 +21,33 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task findById(Integer id) {
-        return taskRepository.findById(id).orElseThrow(InputMismatchException::new);
+        return taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with id: " + id + " was not found!"));
     }
 
+    @Transactional
     @Override
     public Task save(Task task) {
         return taskRepository.save(task);
     }
 
+    @Transactional
     @Override
     public void update(Integer id, Task updatedtask) {
-        taskRepository.findAll().removeIf(t -> t.getId().equals(updatedtask.getId()));
-        taskRepository.save(updatedtask);
+        Task existingTask = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with id: " + id + " was not found!"));
+
+        existingTask.setName(updatedtask.getName());
+        existingTask.setStatus(updatedtask.getStatus());
+
+        taskRepository.save(existingTask);
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) {
+        if (!taskRepository.existsById(id)) {
+            throw new EntityNotFoundException("Task with id: " + id + " was not found!");
+        }
+
         taskRepository.deleteById(id);
     }
 }

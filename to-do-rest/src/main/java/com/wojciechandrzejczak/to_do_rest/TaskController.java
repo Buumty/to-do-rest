@@ -1,9 +1,10 @@
 package com.wojciechandrzejczak.to_do_rest;
 
-import com.sun.source.util.TaskListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -32,23 +33,25 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public ResponseEntity<URI> save(@RequestBody Task task) {
-        taskService.save(task);
+    public ResponseEntity<URI> save(@RequestBody @NonNull Task task) {
+        Task savedTask = taskService.save(task);
 
-        String location = "http://localhost:8080/tasks/" + task.getId();
-        URI locationUri = URI.create(location);
+        URI locationUri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("{id}")
+                .buildAndExpand(savedTask.getId())
+                .toUri();
 
         return ResponseEntity.created(locationUri).body(locationUri);
     }
 
     @PutMapping("/tasks/{id}")
-    public ResponseEntity<Task> update(@PathVariable Integer id, @RequestBody Task task) {
+    public ResponseEntity<Task> update(@PathVariable Integer id, @RequestBody @NonNull Task task) {
         taskService.update(id, task);
-
-        return ResponseEntity.ok(task);
+        Task updatedTask = taskService.findById(id);
+        return ResponseEntity.ok(updatedTask);
     }
 
-    @DeleteMapping("tasks/{id}")
+    @DeleteMapping("/tasks/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         taskService.deleteById(id);
 
