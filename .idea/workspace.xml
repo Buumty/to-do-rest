@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="314dbb69-5366-48bc-8c77-dc495c3e1fdc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/DataBaseResetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/to-do-rest/src/main/java/com/wojciechandrzejczak/to_do_rest/TaskServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,9 +28,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2k14l2C6eP1fazJjlTB45NH66ni" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,7 +41,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "validation",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/wojtas/Desktop/Projekty-Java/10-to-do-rest"
   }
 }]]></component>

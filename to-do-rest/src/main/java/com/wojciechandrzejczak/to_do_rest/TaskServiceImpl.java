@@ -4,14 +4,17 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService{
     private final TaskRepository taskRepository;
+    private final DataBaseResetService dataBaseResetService;
 
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, DataBaseResetService dataBaseResetService) {
         this.taskRepository = taskRepository;
+        this.dataBaseResetService = dataBaseResetService;
     }
 
     @Override
@@ -63,5 +66,6 @@ public class TaskServiceImpl implements TaskService{
         }
 
         taskRepository.deleteById(id);
+        dataBaseResetService.resetAutoIncrement();
     }
 }
