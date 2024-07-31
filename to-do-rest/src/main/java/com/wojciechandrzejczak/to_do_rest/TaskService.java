@@ -12,5 +12,6 @@ public interface TaskService {
     Task findById(Integer id);
     Task save(Task task);
     void update(Integer id, Task task);
+    void updatePartially(Integer id, Task task);
     void deleteById(Integer id);
 }

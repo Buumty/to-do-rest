@@ -51,6 +51,13 @@ public class TaskController {
         return ResponseEntity.ok(updatedTask);
     }
 
+    @PatchMapping("/tasks/{id}")
+    public ResponseEntity<Task> updatePartially(@PathVariable Integer id, @RequestBody @NonNull Task task) {
+        taskService.updatePartially(id, task);
+        Task updatedTask = taskService.findById(id);
+        return ResponseEntity.ok(updatedTask);
+    }
+
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         taskService.deleteById(id);

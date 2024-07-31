@@ -43,6 +43,20 @@ public class TaskServiceImpl implements TaskService{
 
     @Transactional
     @Override
+    public void updatePartially(Integer id, Task updatedTask) {
+        Task existingTask = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Task with id: " + id + " was not found!"));
+        if (updatedTask.getName() != null) {
+            existingTask.setName(updatedTask.getName());
+        }
+        if (updatedTask.getStatus() != null) {
+            existingTask.setStatus(updatedTask.getStatus());
+        }
+
+        taskRepository.save(existingTask);
+    }
+
+    @Transactional
+    @Override
     public void deleteById(Integer id) {
         if (!taskRepository.existsById(id)) {
             throw new EntityNotFoundException("Task with id: " + id + " was not found!");
